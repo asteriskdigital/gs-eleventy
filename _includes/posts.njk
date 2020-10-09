@@ -1,0 +1,61 @@
+---
+layout: base.njk
+title: Posts
+pagination:
+  data: collections.posts
+  size: 5
+---
+
+{% include "partials/_header-list.njk" %}
+
+<main class="sans-serif">
+
+<ul class="list mh5 pl0 cf mw8 ba bb-0 b--light-silver">
+{% for post in pagination.items %}
+  <li class="pa3 pa4-ns bb b--light-silver">
+    <span class="b db f3 mb1">
+      <a href="{{post.url}}" class="near-black no-underline link dim">
+        {{post.data.title}}
+      </a>
+    </span>
+    <span class="db f4 mv2 mid-gray">
+      {{post.data.authors}}
+    </span>
+    <span class="db f6 mv2 mid-gray">
+      {{post.data.date}}
+    </span>
+  </li>
+{% endfor %}
+</ul>
+
+<div class="mw8 center">
+  <nav class="cf pa3 pa4-ns" data-name="pagination-numbers">
+    {% for pageEntry in pagination.pages %}
+      {% if loop.first %}
+        {% if pagination.previousPageHref %}
+          <a class="fl dib link dim black f6 f5-ns b pa2" href="{{ pagination.previousPageHref }}" title="Previous">&larr; Previous</a>
+        {% else %}
+          <span class="fl dib link dim black f6 f5-ns b pa2" title="Previous">&larr; Previous</span>
+        {% endif %}
+        {% if pagination.nextPageHref %}
+          <a class="fr dib link dim black f6 f5-ns b pa2" href="{{ pagination.nextPageHref }}" title="Next">Next &rarr;</a>
+        {% else %}
+          <span class="fr dib link dim black f6 f5-ns b pa2" title="Next">Next &rarr;</span>
+        {% endif %}
+        <div class="overflow-hidden center db tc">
+      {% endif %}
+    
+    
+      <a class="dib link dim black {% if page.url == pagination.hrefs[loop.index0] %}bg-dark-green br2 white{% endif %} f6 f5-ns b pa2" 
+         href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>
+        {{ loop.index }}
+      </a>
+
+      {% if loop.last %}
+      </div>
+      {% endif %}
+    {%- endfor %}
+  </nav>
+</div>
+
+</main
