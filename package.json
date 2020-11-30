@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts" : {
-    "start" : "eleventy --serve"
+  "scripts": {
+    "start": "eleventy --serve"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0"
